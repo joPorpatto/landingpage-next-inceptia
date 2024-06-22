@@ -15,6 +15,7 @@ import {
   ListItemButton,
   ListItemText,
   Drawer,
+  Icon,
 } from "@mui/material";
 import NextLink from "next/link";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
@@ -22,7 +23,10 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import { ColorModeContext } from "@/app/(inceptia)/layout";
 import MenuIcon from "@mui/icons-material/Menu";
 import { usePathname } from "next/navigation";
-
+import AbcIcon from "@mui/icons-material/Abc";
+import ApartmentIcon from "@mui/icons-material/Apartment";
+import CustomLink from "../link/CustomLink";
+import Image from "next/image";
 interface Props {
   /**
    * Injected by the documentation to work in an iframe.
@@ -67,113 +71,99 @@ const Navbar: React.FC = (props: Props) => {
     window !== undefined ? () => window().document.body : undefined;
   console.log(pathName);
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box style={{ zIndex: "100" }}>
       <CssBaseline />
       <AppBar
         component="nav"
-        color={theme.palette.mode === "dark" ? "primary" : "transparent"}
+        // color={theme.palette.mode === "dark" ? "primary" : "transparent"}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          backgroundColor: `${
+            theme.palette.mode === "dark" ? "black" : "white"
+          }`,
+        }}
       >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-          >
-            INCEPTIA
-          </Typography>
-          <IconButton
-            sx={{ ml: 1 }}
-            onClick={colorMode.toggleColorMode}
-            // color="inherit"
-          >
-            {theme.palette.mode === "dark" ? (
-              <DarkModeIcon />
-            ) : (
-              <LightModeIcon />
-            )}
-          </IconButton>
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
-            {/* <nav> */}
-            <Link
-              href="/home"
-              component={NextLink}
-              sx={{
-                p: 1,
-                color: "gray.600",
-                "&:hover": {
-                  transparent: ".1",
-                },
-                ...("/home" === pathName && {
-                  color: "blue",
-                }),
-              }}
-            >
-              home
-            </Link>
-            <Link
-              href="/about"
-              component={NextLink}
-              sx={{
-                p: 1,
-                color: "gray.600",
-                "&:hover": {
-                  transparent: ".1",
-                },
-                ...("/about" === pathName && {
-                  color: "blue",
-                }),
-              }}
-            >
-              about
-            </Link>
-            <Link
-              href="/contact"
-              component={NextLink}
-              sx={{
-                p: 1,
-                color: "gray.600",
-                "&:hover": {
-                  transparent: ".1",
-                },
-                ...("/contact" === pathName && {
-                  color: "blue",
-                }),
-              }}
-            >
-              contact
-            </Link>
-            {/* </nav> */}
-          </Box>
-          <Drawer
-            container={container}
-            variant="temporary"
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
+        <Box sx={{ maxWidth: "1236px", width: "100%" }}>
+          <Toolbar
+            variant="regular"
             sx={{
-              display: { xs: "block", sm: "none" },
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
-                width: drawerWidth,
-              },
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-between",
             }}
           >
-            {drawer}
-          </Drawer>
-          {/* <Navbar items={MenuItems} /> */}
-        </Toolbar>
-        {/* <HamburgerMenu items={MenuItems} open={open} setOpen={setDrawerOpen} sx={{ display: { xs: 'flex', sm: 'none' } }} /> */}
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2, display: { sm: "none" } }}
+            >
+              <MenuIcon />
+            </IconButton>
+
+            <Image
+              src="/assets/logo.png"
+              width={100}
+              height={30}
+              alt="Picture of the author"
+            />
+
+            <Box sx={{ display: { xs: "none", sm: "block" } }}>
+              <IconButton
+                sx={{ ml: 1 }}
+                onClick={colorMode.toggleColorMode}
+                // color="inherit"
+              >
+                {theme.palette.mode === "dark" ? (
+                  <DarkModeIcon />
+                ) : (
+                  <LightModeIcon />
+                )}
+              </IconButton>
+
+              <CustomLink href="/" isActive={"/" === pathName}>
+                Home
+              </CustomLink>
+              <CustomLink href="/about" isActive={"/about" === pathName}>
+                About
+              </CustomLink>
+              <CustomLink href="/contact" isActive={"/contact" === pathName}>
+                Contact
+              </CustomLink>
+            </Box>
+            <Drawer
+              container={container}
+              variant="temporary"
+              open={mobileOpen}
+              onClose={handleDrawerToggle}
+              ModalProps={{
+                keepMounted: true, // Better open performance on mobile.
+              }}
+              sx={{
+                display: { xs: "block", sm: "none" },
+                "& .MuiDrawer-paper": {
+                  boxSizing: "border-box",
+                  width: drawerWidth,
+                },
+              }}
+            >
+              {drawer}
+              <IconButton
+                sx={{ ml: 1 }}
+                onClick={colorMode.toggleColorMode}
+                // color="inherit"
+              >
+                {theme.palette.mode === "dark" ? (
+                  <DarkModeIcon />
+                ) : (
+                  <LightModeIcon />
+                )}
+              </IconButton>
+            </Drawer>
+          </Toolbar>
+        </Box>
       </AppBar>
     </Box>
   );
