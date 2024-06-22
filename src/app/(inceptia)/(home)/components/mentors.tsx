@@ -1,5 +1,3 @@
-"use client";
-
 import React, { FC } from "react";
 import Box from "@mui/material/Box";
 import Slider, { Settings } from "react-slick";
@@ -25,6 +23,7 @@ const SliderArrow: FC<SliderArrowArrow> = (props) => {
   return (
     <IconButton
       sx={{
+        position: "absolute",
         backgroundColor: "background.paper",
         color: "primary.main",
         "&:hover": {

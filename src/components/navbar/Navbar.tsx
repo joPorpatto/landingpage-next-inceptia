@@ -1,3 +1,4 @@
+"use client";
 import React, { useContext } from "react";
 import {
   AppBar,
@@ -20,13 +21,13 @@ import {
 import NextLink from "next/link";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
-import { ColorModeContext } from "@/app/(inceptia)/layout";
 import MenuIcon from "@mui/icons-material/Menu";
 import { usePathname } from "next/navigation";
 import AbcIcon from "@mui/icons-material/Abc";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import CustomLink from "../link/CustomLink";
 import Image from "next/image";
+import { ColorModeContext } from "@/app/materialUI/CreateTheme";
 interface Props {
   /**
    * Injected by the documentation to work in an iframe.

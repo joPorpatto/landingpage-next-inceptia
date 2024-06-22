@@ -18,7 +18,7 @@ const BaseLinkStyles = {
 const CustomLink = styled(({ isActive, ...props }: any) => <Link {...props} />)(
   ({ theme, isActive }) => ({
     ...BaseLinkStyles,
-    color: isActive ? "#005cbf" : theme.palette.text.primary,
+    color: isActive ? "#005cbf" : theme.palette.secondary.main,
   })
 );
 

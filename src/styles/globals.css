@@ -28,6 +28,12 @@ body {
   background-color: "#fff";
 }
 
+body {
+  margin: 0;
+  background-color: var(--color-background);
+  transition: 0.2s ease-out;
+}
+
 @-webkit-keyframes click_animation {
   from {
     -webkit-transform: scale(1);
