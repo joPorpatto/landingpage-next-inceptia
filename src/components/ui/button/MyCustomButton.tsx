@@ -1,3 +1,4 @@
+"use client";
 // src/components/CustomButton.tsx
 import * as React from "react";
 import { Button, ButtonProps } from "@mui/material";
@@ -34,6 +35,7 @@ const MyCustomButton: React.FC<CustomButtonProps> = ({
   children,
   ...props
 }) => {
+  console.log(props);
   return (
     <Link href={href} passHref>
       <CustomButton {...props}>{children}</CustomButton>

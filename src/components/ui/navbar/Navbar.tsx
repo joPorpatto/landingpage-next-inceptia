@@ -25,7 +25,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { usePathname } from "next/navigation";
 import AbcIcon from "@mui/icons-material/Abc";
 import ApartmentIcon from "@mui/icons-material/Apartment";
-import CustomLink from "../link/CustomLink";
+import CustomLink from "../../link/CustomLink";
 import Image from "next/image";
 import { ColorModeContext } from "@/app/materialUI/CreateTheme";
 interface Props {

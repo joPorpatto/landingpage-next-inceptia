@@ -5,13 +5,13 @@ export interface User {
   professional?: string;
 }
 
-export interface Mentor extends Omit<User, "professional"> {
+export interface Partner extends Omit<User, "professional"> {
   company?: {
     name: string;
     logo: string;
   };
 }
-export const data: Array<Mentor> = [
+export const data: Array<Partner> = [
   {
     id: 1,
     photo: "/assets/partners/assurant.png",

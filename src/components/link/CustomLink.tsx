@@ -3,22 +3,18 @@ import React from "react";
 import { styled } from "@mui/system";
 import Link from "next/link";
 
-const BaseLinkStyles = {
+const BaseLinkStyles = ({ theme, isActive }: any) => ({
   textDecoration: "none",
-  color: "inherit",
+  color: isActive ? theme.palette.primary.dark : theme.palette.text.primary,
   padding: "0 12px",
   "&:hover": {
-    color: "#0070f3",
+    color: isActive ? theme.palette.primary.dark : theme.palette.primary.light,
   },
-  "&.active": {
-    color: "#005cbf",
-  },
-};
+});
 
 const CustomLink = styled(({ isActive, ...props }: any) => <Link {...props} />)(
   ({ theme, isActive }) => ({
-    ...BaseLinkStyles,
-    color: isActive ? "#005cbf" : theme.palette.secondary.main,
+    ...BaseLinkStyles({ theme, isActive }),
   })
 );
 

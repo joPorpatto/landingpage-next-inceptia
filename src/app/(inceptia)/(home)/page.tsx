@@ -1,7 +1,9 @@
 import { Paper } from "@mui/material";
 import React from "react";
 import Hero from "./components/hero";
-import HomeOurMentors from "./components/mentors";
+import Partners from "./components/partners";
+import Conversations from "./components/conversations";
+import Business from "./components/business";
 
 const Homepage = () => {
   return (
@@ -15,7 +17,9 @@ const Homepage = () => {
         }}
       >
         <Hero />
-        <HomeOurMentors />
+        <Business />
+        <Conversations />
+        <Partners />
       </Paper>
     </>
   );

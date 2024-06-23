@@ -8,8 +8,8 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme, styled } from "@mui/material/styles";
 import IconArrowBack from "@mui/icons-material/ArrowBack";
 import IconArrowForward from "@mui/icons-material/ArrowForward";
-import { data } from "./mentors.data";
-import MentorCardItem from "./mentorcard";
+import { data } from "../../../../data/partners.data";
+import PartnerCardItem from "../../../../components/cards/partnerCardItem";
 
 interface SliderArrowArrow {
   onClick?: () => void;
@@ -66,15 +66,17 @@ const StyledDots = styled("ul")(({ theme }) => ({
   },
 }));
 
-const HomeOurMentors = () => {
+const Partners = () => {
   const { breakpoints } = useTheme();
-  const matchMobileView = useMediaQuery(breakpoints.down("md"));
+  const matchTabletView = useMediaQuery(breakpoints.between("sm", "md"));
+  const matchSmallView = useMediaQuery(breakpoints.down("sm"));
+  const theme = useTheme();
 
   const sliderConfig: Settings = {
     infinite: true,
     autoplay: true,
-    speed: 300,
-    slidesToShow: matchMobileView ? 1 : 3,
+    speed: 1000,
+    slidesToShow: matchSmallView ? 1 : matchTabletView ? 2 : 3,
     slidesToScroll: 1,
     prevArrow: <SliderArrow type="prev" />,
     nextArrow: <SliderArrow type="next" />,
@@ -105,17 +107,48 @@ const HomeOurMentors = () => {
           xs: 8,
           md: 12,
         },
-        backgroundColor: "#ecf3f3",
+        backgroundColor:
+          theme.palette.mode === "dark"
+            ? theme.palette.primary
+            : theme.palette.grey[200],
       }}
     >
       <Container maxWidth="lg">
-        <Typography variant="h1" sx={{ fontSize: 40 }}>
+        <Typography
+          sx={{
+            fontSize: { xs: 32, md: 48 },
+            // letterSpacing: 1.5,
+            fontWeight: "bold",
+            lineHeight: 1.2,
+            display: "flex",
+            justifyContent: "center",
+            textAlign: "center",
+            marginBottom: 2, // Aquí defines el espacio entre el título y el slider
+          }}
+        >
           Clientes que confían en nosotros
+        </Typography>
+
+        <Typography
+          sx={{
+            color: "text.secondary",
+            lineHeight: 1.6,
+            display: "flex",
+            justifyContent: "center",
+            textAlign: "center",
+            mb: 2,
+            px: { md: 16 }, // Aplica padding solo en pantallas medianas y más grandes
+            // width: "80%",
+          }}
+        >
+          {
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to..."
+          }
         </Typography>
 
         <Slider {...sliderConfig}>
           {data.map((item: any) => (
-            <MentorCardItem key={String(item.id)} item={item} />
+            <PartnerCardItem key={String(item.id)} item={item} />
           ))}
         </Slider>
       </Container>
@@ -123,4 +156,4 @@ const HomeOurMentors = () => {
   );
 };
 
-export default HomeOurMentors;
+export default Partners;
