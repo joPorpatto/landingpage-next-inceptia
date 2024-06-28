@@ -78,6 +78,8 @@ const Hero = () => {
                   width={500}
                   height={500}
                   alt="Hero img"
+                  layout="responsive"
+                  objectFit="cover"
                 />
               </Box>
             </Grid>

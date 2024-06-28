@@ -28,27 +28,39 @@ export default function MaxHeightTextarea() {
   const Textarea = styled(BaseTextareaAutosize)(
     ({ theme }) => `
     box-sizing: border-box;
-    max-width: 1200px;
+    max-width: 100%;
+    max-height:100px;
+    font-family: 'IBM Plex Sans', sans-serif;
     width:100%;
-    font-size: 0.875rem;
+    font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
     padding: 8px 12px;
-    border-radius: 8px;
-    color: ${theme.palette.mode === "dark" ? grey[300] : grey[900]};
-    background: ${theme.palette.mode === "dark" ? grey[900] : "#fff"};
-    border: 1px solid ${theme.palette.mode === "dark" ? grey[700] : grey[200]};
+    border-radius: 3px;
+    color: ${theme.palette.mode === "dark" ? "white" : grey[900]};;
+    background: ${theme.palette.mode === "dark" ? "transparent" : "#fff"};
+    border: 1px solid ${
+      theme.palette.mode === "dark" ? "#ffffff3b" : grey[400]
+    };
+    
+&::placeholder {
+      color: ${theme.palette.mode === "dark" ? "#ffffffba" : grey[700]};
+      font-size:''
+      opacity: 1; // Firefox workaround
+    }
     
 
-    &:hover {
-      border-color: ${blue[400]};
+   &:hover {
+      border: 1px solid  ${theme.palette.mode === "dark" ? "white" : grey[900]};
     }
 
     &:focus {
       border-color: ${blue[400]};
-      box-shadow: 0 0 0 3px ${
-        theme.palette.mode === "dark" ? blue[600] : blue[200]
-      };
+      // border:2px solid;
+    }
+
+    &:focus-visible {
+      outline: 1;
     }
 
     // firefox
@@ -60,10 +72,10 @@ export default function MaxHeightTextarea() {
 
   return (
     <Textarea
-      // maxRows={4}
-      aria-label="maximum height"
-      placeholder="Maximum 4 rows"
-      defaultValue="Lorem ipsum dolor sit amet... "
+      aria-label="minimum height"
+      minRows={3}
+      maxRows={3}
+      placeholder="Mensaje*"
     />
   );
 }
